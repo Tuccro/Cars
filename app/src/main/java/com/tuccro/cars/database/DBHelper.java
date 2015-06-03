@@ -38,6 +38,7 @@ class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_BRAND);
         db.execSQL(CREATE_TABLE_ENGINE);
         db.execSQL(CREATE_TABLE_MODEL);
+
     }
 
     @Override
