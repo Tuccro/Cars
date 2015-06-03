@@ -69,16 +69,16 @@ public class DB implements IDBStrings {
     }
 
     public Cursor getAllBrands() {
-        return db.query(DB_TABLE_BRAND, null, null, null, null, null, null);
+        return db.query(DB_TABLE_BRAND, null, null, null, null, null, BRAND_NAME);
     }
 
 
     public Cursor getAllModels() {
-        return db.query(DB_TABLE_MODEL, null, null, null, null, null, null);
+        return db.query(DB_TABLE_MODEL, null, null, null, null, null, MODEL_NAME);
     }
 
 
     public Cursor getAllEngines() {
-        return db.query(DB_TABLE_ENGINE, null, null, null, null, null, null);
+        return db.query(DB_TABLE_ENGINE, null, null, null, null, null, ENGINE_NAME);
     }
 }
