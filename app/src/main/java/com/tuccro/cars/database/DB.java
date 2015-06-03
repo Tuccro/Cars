@@ -4,14 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-public class DB {
-
-    public static final String DB_TABLE_BRAND = "BRAND";
-    public static final String DB_TABLE_MODEL = "MODEL";
-    public static final String DB_TABLE_ENGINE = "ENGINE";
-
-    private static final String DB_NAME = "cars.sqlite";
-    private static final int DB_VERSION = 1;
+public class DB implements IDBStrings{
 
     private final Context context;
 
