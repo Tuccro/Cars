@@ -2,6 +2,7 @@ package com.tuccro.cars.utils;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.tuccro.cars.core.Brand;
@@ -16,7 +17,9 @@ import java.util.List;
 public abstract class Utils implements IDBStrings {
 
     public static ArrayList<Brand> getBrandsFromDBCursor(Cursor cursor) {
-        ArrayList<Brand> brands = new ArrayList<>();
+        Log.e("SIZE", String.valueOf(cursor.getCount()));
+        ArrayList<Brand> brands = new ArrayList<>(cursor.getCount());
+        if(cursor.getCount()<1) return brands;
 
         int id;
         String name;
@@ -33,7 +36,9 @@ public abstract class Utils implements IDBStrings {
     }
 
     public static ArrayList<Model> getModelsFromDBCursor(Cursor cursor) {
-        ArrayList<Model> models = new ArrayList<>();
+        Log.e("SIZE", String.valueOf(cursor.getCount()));
+        ArrayList<Model> models = new ArrayList<>(cursor.getCount());
+        if(cursor.getCount()<1) return models;
 
         int id;
         int brandId;
@@ -56,7 +61,9 @@ public abstract class Utils implements IDBStrings {
     }
 
     public static ArrayList<Engine> getEnginesFromDBCursor(Cursor cursor) {
-        ArrayList<Engine> brands = new ArrayList<>();
+        Log.e("SIZE", String.valueOf(cursor.getCount()));
+        ArrayList<Engine> engines = new ArrayList<>(cursor.getCount());
+        if(cursor.getCount()<1) return engines;
 
         int id;
         int idModel;
@@ -68,10 +75,10 @@ public abstract class Utils implements IDBStrings {
             idModel = cursor.getInt(cursor.getColumnIndex(ENGINE_MODEL_ID));
             name = cursor.getString(cursor.getColumnIndex(ENGINE_NAME));
 
-            brands.add(new Engine(id, idModel, name));
+            engines.add(new Engine(id, idModel, name));
         } while (cursor.moveToNext());
 
-        return brands;
+        return engines;
     }
 
     public static ArrayAdapter<String> getItemsArrayAdapter(Context context, List list) {
