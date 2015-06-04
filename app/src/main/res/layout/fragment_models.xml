@@ -38,6 +38,7 @@
             android:id="@+id/text_start_date"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:enabled="false"
             android:layout_weight="1" />
 
         <EditText
@@ -45,6 +46,7 @@
             android:id="@+id/text_end_date"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:enabled="false"
             android:layout_weight="1" />
     </LinearLayout>
 
