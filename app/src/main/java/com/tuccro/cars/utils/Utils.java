@@ -1,13 +1,17 @@
 package com.tuccro.cars.utils;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.widget.ArrayAdapter;
 
 import com.tuccro.cars.core.Brand;
 import com.tuccro.cars.core.Engine;
+import com.tuccro.cars.core.Item;
 import com.tuccro.cars.core.Model;
 import com.tuccro.cars.database.IDBStrings;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Utils implements IDBStrings {
 
@@ -70,4 +74,17 @@ public abstract class Utils implements IDBStrings {
         return brands;
     }
 
+    public static ArrayAdapter<String> getItemsArrayAdapter(Context context, List list) {
+        Item item;
+        String brands[] = new String[list.size()];
+        for (int k = 0; k < brands.length; k++) {
+            item = (Item) list.get(k);
+            brands[k] = item.getName();
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
+                android.R.layout.simple_list_item_1, brands);
+
+        return adapter;
+    }
 }

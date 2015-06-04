@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.tuccro.cars.core.Brand;
+import com.tuccro.cars.core.Item;
 import com.tuccro.cars.database.DB;
 import com.tuccro.cars.utils.Utils;
 
@@ -39,7 +40,7 @@ public class BrandsFragment extends Fragment {
         spinner = (Spinner) view.findViewById(R.id.spinner_brands);
         button = (Button) view.findViewById(R.id.button_brands);
 
-
+        init();
         return view;
     }
 
@@ -51,13 +52,6 @@ public class BrandsFragment extends Fragment {
 
         data.close();
 
-        String brands[] = new String[brandsList.size()];
-        for (int k = 0; k < brands.length; k++) {
-            brands[k] = brandsList.get(k).getName();
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, brands);
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(Utils.getItemsArrayAdapter(getActivity(),  brandsList));
     }
 }

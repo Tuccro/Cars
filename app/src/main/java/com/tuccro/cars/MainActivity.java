@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 
 import com.tuccro.cars.core.Brand;
+import com.tuccro.cars.core.Item;
 import com.tuccro.cars.database.DB;
 import com.tuccro.cars.utils.Utils;
 
@@ -30,5 +31,13 @@ public class MainActivity extends Activity {
         fragTrans.add(R.id.layout_models, modelsFragment);
         fragTrans.commit();
 
+    }
+
+    void initItemsList(List<Item> list){
+        String strings[] = new String[list.size()];
+
+        for (Item o:list){
+
+        }
     }
 }
