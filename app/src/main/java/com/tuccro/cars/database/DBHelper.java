@@ -1,6 +1,5 @@
 package com.tuccro.cars.database;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -21,17 +20,22 @@ class DBHelper extends SQLiteOpenHelper implements IDBStrings {
 
         insertBrands(db);
         insertModels(db);
+        insertEngines(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    private void insertBrands(SQLiteDatabase db){
+    private void insertBrands(SQLiteDatabase db) {
         db.execSQL(INIT_BRANDS_TABLE);
     }
 
-    private void insertModels(SQLiteDatabase db){
-       db.execSQL(INIT_MODELS_TABLE);
+    private void insertModels(SQLiteDatabase db) {
+        db.execSQL(INIT_MODELS_TABLE);
+    }
+
+    private void insertEngines(SQLiteDatabase db) {
+        db.execSQL(INIT_ENGINES_TABLE);
     }
 }

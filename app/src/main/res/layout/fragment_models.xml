@@ -18,6 +18,7 @@
             android:layout_gravity="center"
             android:layout_weight="3" />
 
+
         <Button
             android:id="@+id/button_models"
             android:layout_width="0dp"
@@ -32,13 +33,15 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <TextView
+        <EditText
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/text_start_date"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <TextView
+        <EditText
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/text_end_date"
             android:layout_width="0dp"
             android:layout_height="match_parent"

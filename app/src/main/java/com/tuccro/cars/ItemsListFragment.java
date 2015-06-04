@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
@@ -18,7 +17,11 @@ import android.widget.ListView;
 public class ItemsListFragment extends ListFragment {
 
     private OnFragmentInteractionListener mListener;
+    int selectedPosition = -1;
 
+    public int getSelectedPosition() {
+        return selectedPosition;
+    }
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -28,11 +31,17 @@ public class ItemsListFragment extends ListFragment {
     }
 
     @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
     }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -54,7 +63,9 @@ public class ItemsListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-
+//        Toast toast = Toast.makeText(getActivity().getApplicationContext(), String.valueOf(position), Toast.LENGTH_SHORT);
+//        toast.show();
+        selectedPosition = position;
     }
 
     /**

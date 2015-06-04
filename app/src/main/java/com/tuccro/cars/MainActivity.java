@@ -3,6 +3,7 @@ package com.tuccro.cars;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.tuccro.cars.database.DB;
 import com.tuccro.cars.utils.Utils;
@@ -37,10 +38,14 @@ public class MainActivity extends Activity {
         dataBase = new DB(this);
         dataBase.open();
         initItemsList(Utils.getEnginesFromDBCursor(dataBase.getAllEngines()));
+//        initItemsList(Utils.getModelsFromDBCursor(dataBase.getAllModels()));
     }
 
     void initItemsList(List list) {
 
         listFragment.setListAdapter(Utils.getItemsArrayAdapter(this, list));
+
+//        Toast toast = Toast.makeText(this, String.valueOf(listFragment.getSelectedPosition()), Toast.LENGTH_SHORT);
+//        toast.show();
     }
 }
