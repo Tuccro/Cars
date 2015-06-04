@@ -20,6 +20,7 @@ class DBHelper extends SQLiteOpenHelper implements IDBStrings {
         db.execSQL(CREATE_TABLE_MODEL);
 
         insertBrands(db);
+        insertModels(db);
     }
 
     @Override
@@ -27,11 +28,10 @@ class DBHelper extends SQLiteOpenHelper implements IDBStrings {
     }
 
     private void insertBrands(SQLiteDatabase db){
-        ContentValues cv = new ContentValues();
-        String brands[] = {"Audi", "BMW", "Mercedes","Porsche","Honda","Skoda"};
-        for (String name:brands){
-            cv.put(BRAND_NAME, name);
-            db.insert(DB_TABLE_BRAND, null, cv);
-        }
+        db.execSQL(INIT_BRANDS_TABLE);
+    }
+
+    private void insertModels(SQLiteDatabase db){
+       db.execSQL(INIT_MODELS_TABLE);
     }
 }

@@ -18,12 +18,13 @@ public abstract class Utils implements IDBStrings {
         String name;
 
         cursor.moveToFirst();
-        while (cursor.moveToNext()) {
+        do {
             id = cursor.getInt(cursor.getColumnIndex(BRAND_ID));
             name = cursor.getString(cursor.getColumnIndex(BRAND_NAME));
 
             brands.add(new Brand(id, name));
-        }
+        } while (cursor.moveToNext());
+
         return brands;
     }
 
@@ -37,7 +38,7 @@ public abstract class Utils implements IDBStrings {
         int endYear;
 
         cursor.moveToFirst();
-        while (cursor.moveToNext()) {
+        do {
             id = cursor.getInt(cursor.getColumnIndex(MODEL_ID));
             brandId = cursor.getInt(cursor.getColumnIndex(MODEL_BRAND_ID));
             name = cursor.getString(cursor.getColumnIndex(MODEL_NAME));
@@ -45,7 +46,8 @@ public abstract class Utils implements IDBStrings {
             endYear = cursor.getInt(cursor.getColumnIndex(MODEL_END_YEAR));
 
             models.add(new Model(id, brandId, name, startYear, endYear));
-        }
+        } while (cursor.moveToNext());
+
         return models;
     }
 
@@ -57,13 +59,14 @@ public abstract class Utils implements IDBStrings {
         String name;
 
         cursor.moveToFirst();
-        while (cursor.moveToNext()) {
+        do {
             id = cursor.getInt(cursor.getColumnIndex(ENGINE_ID));
             idModel = cursor.getInt(cursor.getColumnIndex(ENGINE_MODEL_ID));
             name = cursor.getString(cursor.getColumnIndex(ENGINE_NAME));
 
             brands.add(new Engine(id, idModel, name));
-        }
+        } while (cursor.moveToNext());
+
         return brands;
     }
 

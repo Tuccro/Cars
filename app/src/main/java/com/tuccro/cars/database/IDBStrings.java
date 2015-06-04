@@ -43,4 +43,33 @@ public interface IDBStrings {
     String ENGINE_MODEL_ID = "id_model";
     String ENGINE_NAME = "name";
 
+    String INIT_BRANDS_TABLE = "INSERT INTO `BRAND`(name) VALUES\n" +
+            "('Audi'),\n" +
+            "('BMW'),\n" +
+            "('Mercedes'),\n" +
+            "('Ford'),\n" +
+            "('Daewoo'),\n" +
+            "('Kia'),\n" +
+            "('Skoda'),\n" +
+            "('Seat'),\n" +
+            "('VW'),\n" +
+            "('Chevrolet'),\n" +
+            "('Porsche');";
+
+    String INIT_MODELS_TABLE = "INSERT INTO `MODEL`(id_brand, name, start_year, end_year) VALUES\n" +
+            "(1, 'A4', 2000, 2015),\n" +
+            "(1, 'A6', 1995, 2000),\n" +
+            "(2, '3-Series E30', 1975, 1983),\n" +
+            "(2, '3-Series E36', 1983, 1989),\n" +
+            "(2, '5-Series E39', 1992, 1999),\n" +
+            "(3, 'G-Class', 1965, 2015),\n" +
+            "(3, 'S-Class W221', 2001, 2013),\n" +
+            "(4, 'Fiesta Mk1', 1975, 1983),\n" +
+            "(5, 'Lanos', 1994, 2014),\n" +
+            "(7, 'Octavia', 2000, 2003),\n" +
+            "(8, 'Ibiza', 1985, 1992),\n" +
+            "(9, 'Golf', 1992, 1997),\n" +
+            "(10, 'Aveo', 2003, 2012),\n" +
+            "(11, 'Cayenne', 2001, 2007);";
+
 }

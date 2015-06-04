@@ -22,25 +22,13 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ItemsListFragment list = new ItemsListFragment();
+        BrandsFragment brandsFragment = new BrandsFragment();
+        ModelsFragment modelsFragment = new ModelsFragment();
 
         fragTrans = getFragmentManager().beginTransaction();
-        fragTrans.add(R.id.layout_list, list);
+        fragTrans.add(R.id.layout_brands, brandsFragment);
+        fragTrans.add(R.id.layout_models, modelsFragment);
         fragTrans.commit();
 
-
-
-        DB data = new DB(getApplicationContext());
-        data.open();
-
-        List<Brand> brandsList = Utils.getBrandsFromDBCursor(data.getAllBrands());
-        String brands[] = new String[brandsList.size()];
-        for(int k = 0; k<brands.length; k++){
-            brands[k] = brandsList.get(k).getName();
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, brands);
-        list.setListAdapter(adapter);
     }
 }
