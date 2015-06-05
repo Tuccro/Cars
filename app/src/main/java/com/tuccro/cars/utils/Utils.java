@@ -12,9 +12,15 @@ import com.tuccro.cars.core.Model;
 import com.tuccro.cars.database.IDBStrings;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public abstract class Utils implements IDBStrings {
+
+    private static int currentYear = 0;
 
     public static ArrayList<Item> getBrandsFromDBCursor(Cursor cursor) {
         Log.e("SIZE", String.valueOf(cursor.getCount()));
@@ -93,5 +99,15 @@ public abstract class Utils implements IDBStrings {
                 android.R.layout.simple_list_item_1, brands);
 
         return adapter;
+    }
+
+    public static int getCurrentYear() {
+        if (currentYear == 0) {
+            Calendar calendar = Calendar.getInstance(TimeZone.getDefault(),
+                    Locale.getDefault());
+            calendar.setTime(new Date());
+            currentYear = calendar.get(Calendar.YEAR);
+        }
+        return currentYear;
     }
 }

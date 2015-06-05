@@ -81,6 +81,7 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                 break;
             case MODELS_MODE:
                 currentItemsList = Utils.getModelsFromDBCursor(dataBase.getAllModels());
+                modelsFragment.setEnableYearsEditTexts(true);
                 break;
             case ENGINES_MODE:
                 currentItemsList = Utils.getEnginesFromDBCursor(dataBase.getAllEngines());
@@ -96,11 +97,9 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         listFragment.setListAdapter(Utils.getItemsArrayAdapter(this, list));
     }
 
-
     @Override
     public void onEdit(View v, String name) {
-//        Toast toast = Toast.makeText(this, String.valueOf(v.getId())+" "+name, Toast.LENGTH_SHORT);
-//        toast.show();
+
         switch (v.getId()) {
             case R.id.button_add:
                 if (!name.isEmpty()) addItem(name);
@@ -131,7 +130,6 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         db.close();
     }
 
-
     private void addItem(String name) {
         DB db = new DB(getApplicationContext());
         db.open();
@@ -139,6 +137,12 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
             case BRANDS_MODE:
                 break;
             case MODELS_MODE:
+                int start = modelsFragment.getEditTextStart();
+                int end = modelsFragment.getEditTextEnd();
+                if ((start < 1900 && start > Utils.getCurrentYear()) ||
+                        (end < 1900 && end > Utils.getCurrentYear())) break;
+
+                db.addModel(brandsFragment.getSelectedItemId(), name, start, end);
                 break;
             case ENGINES_MODE:
                 db.addEngine(modelsFragment.getSelectedItemId(), name);

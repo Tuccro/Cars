@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import com.tuccro.cars.R;
 import com.tuccro.cars.core.Item;
+import com.tuccro.cars.core.Model;
 import com.tuccro.cars.database.DB;
 import com.tuccro.cars.utils.Utils;
 
@@ -26,10 +28,16 @@ public class BrandsFragment extends Fragment {
     Spinner spinner;
     Button button;
     List<Item> brandsList;
+    int selectedItemId;
+
     private OnButtonClickListener onButtonClickListener;
 
     public BrandsFragment() {
         // Required empty public constructor
+    }
+
+    public int getSelectedItemId() {
+        return selectedItemId;
     }
 
     @Override
@@ -49,10 +57,12 @@ public class BrandsFragment extends Fragment {
             }
         });
 
+        spinner.setOnItemSelectedListener(listener);
+
         init();
         return view;
     }
-    
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -80,6 +90,23 @@ public class BrandsFragment extends Fragment {
 
         spinner.setAdapter(Utils.getItemsArrayAdapter(getActivity(), brandsList));
     }
+
+
+    AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            int startDate, endDate;
+
+            selectedItemId = brandsList.get(position).getId();
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
 
     public interface OnButtonClickListener {
 

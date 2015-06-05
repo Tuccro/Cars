@@ -9,8 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tuccro.cars.R;
 import com.tuccro.cars.core.Item;
@@ -28,8 +29,8 @@ public class ModelsFragment extends Fragment {
 
     Spinner spinner;
     Button button;
-    TextView tvStart;
-    TextView tvEnd;
+    EditText tvStart;
+    EditText tvEnd;
 
     List<Item> modelsList;
     int selectedItemId;
@@ -44,15 +45,37 @@ public class ModelsFragment extends Fragment {
         return selectedItemId;
     }
 
+    public void setEnableYearsEditTexts(boolean b) {
+        tvStart.setEnabled(b);
+        tvEnd.setEnabled(b);
+    }
+
+    public int getEditTextStart() {
+        if (tvStart.getText().toString() != null) {
+            return Integer.parseInt(tvStart.getText().toString());
+        } else {
+            return 0;
+        }
+    }
+
+    public int getEditTextEnd() {
+        if (tvEnd.getText().toString() != null) {
+            return Integer.parseInt(tvEnd.getText().toString());
+        } else {
+            return 0;
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_models, container, false);
 
+        tvStart = (EditText) view.findViewById(R.id.text_start_date);
+        tvEnd = (EditText) view.findViewById(R.id.text_end_date);
+
         spinner = (Spinner) view.findViewById(R.id.spinner_models);
         button = (Button) view.findViewById(R.id.button_models);
-        tvStart = (TextView) view.findViewById(R.id.text_start_date);
-        tvEnd = (TextView) view.findViewById(R.id.text_end_date);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +119,7 @@ public class ModelsFragment extends Fragment {
     }
 
     AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
+
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             int startDate, endDate;
