@@ -1,6 +1,7 @@
 package com.tuccro.cars.fragments;
 
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -50,6 +51,23 @@ public class BrandsFragment extends Fragment {
 
         init();
         return view;
+    }
+    
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            onButtonClickListener = (OnButtonClickListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        onButtonClickListener = null;
     }
 
     public void init() {

@@ -77,10 +77,10 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         dataBase.open();
         switch (mode) {
             case BRANDS_MODE:
-                currentItemsList = Utils.getEnginesFromDBCursor(dataBase.getAllBrands());
+                currentItemsList = Utils.getBrandsFromDBCursor(dataBase.getAllBrands());
                 break;
             case MODELS_MODE:
-                currentItemsList = Utils.getEnginesFromDBCursor(dataBase.getAllModels());
+                currentItemsList = Utils.getModelsFromDBCursor(dataBase.getAllModels());
                 break;
             case ENGINES_MODE:
                 currentItemsList = Utils.getEnginesFromDBCursor(dataBase.getAllEngines());
