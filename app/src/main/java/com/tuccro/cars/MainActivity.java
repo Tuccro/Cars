@@ -63,8 +63,6 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
         setListMode(ENGINES_MODE);
 
-        ActionDialog actionDialog = new ActionDialog(this, 1, "dsfsdfsd");
-        actionDialog.show();
     }
 
     @Override
@@ -180,24 +178,24 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
         Context context;
 
-        protected ActionDialog(Context context, int actionID, String name) {
+        protected ActionDialog(Context context, View v, String name) {
             super(context);
             this.context = context;
             this.setTitle("Please confirm");
 
             StringBuilder builder = new StringBuilder("Are you really want to ");
 
-            switch (actionID) {
-                case ACTION_DELETE:
-                    builder.append("delete item ");
-                    break;
-                case ACTION_ADD_NEW:
-                    builder.append("add item ");
-                    break;
-                case ACTION_UPDATE:
-                    builder.append("update item ");
-                    break;
-            }
+//            switch (actionID) {
+//                case ACTION_DELETE:
+//                    builder.append("delete item ");
+//                    break;
+//                case ACTION_ADD_NEW:
+//                    builder.append("add item ");
+//                    break;
+//                case ACTION_UPDATE:
+//                    builder.append("update item ");
+//                    break;
+//            }
             builder.append(name);
 
         }
