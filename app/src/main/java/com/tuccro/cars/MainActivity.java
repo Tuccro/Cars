@@ -3,9 +3,11 @@ package com.tuccro.cars;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.tuccro.cars.core.Item;
 import com.tuccro.cars.database.DB;
@@ -25,9 +27,9 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
     private static final String MODELS_MODE = "models_mode";
     private static final String ENGINES_MODE = "engines_mode";
 
-    private static final int ACTION_DELETE = 0;
-    private static final int ACTION_ADD_NEW = 1;
-    private static final int ACTION_UPDATE = 2;
+    public static final int ACTION_DELETE = 0;
+    public static final int ACTION_ADD_NEW = 1;
+    public static final int ACTION_UPDATE = 2;
 
     private String mode = ENGINES_MODE;
 
@@ -60,6 +62,9 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         fragTrans.commit();
 
         setListMode(ENGINES_MODE);
+
+        ActionDialog actionDialog = new ActionDialog(this, 1, "dsfsdfsd");
+        actionDialog.show();
     }
 
     @Override
@@ -108,16 +113,15 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
         switch (v.getId()) {
             case R.id.button_add:
-                if (!name.isEmpty() && isDialogAccepted(ACTION_ADD_NEW, name)) addItem(name);
+                if (!name.isEmpty() ) addItem(name);
                 break;
             case R.id.button_delete:
                 int id = listFragment.getSelectedPosition();
-                if (id != -1 && isDialogAccepted(ACTION_DELETE, listFragment.getSelectedPositionName())) {
+                if (id != -1 ) {
                     deleteItem(id);
                 }
                 break;
         }
-
     }
 
     private void deleteItem(int id) {
@@ -171,43 +175,38 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                 break;
         }
     }
-    AlertDialog.Builder dialog;
-    public static boolean dialogAccept;
 
-    public boolean isDialogAccepted(int actionID, String name) {
-        dialogAccept = false;
-        StringBuilder builder = new StringBuilder("Are you really want to ");
+    public class ActionDialog extends AlertDialog {
 
-        switch (actionID) {
-            case ACTION_DELETE:
-                builder.append("delete item ");
-                break;
-            case ACTION_ADD_NEW:
-                builder.append("add item ");
-                break;
-            case ACTION_UPDATE:
-                builder.append("update item ");
-                break;
+        Context context;
+
+        protected ActionDialog(Context context, int actionID, String name) {
+            super(context);
+            this.context = context;
+            this.setTitle("Please confirm");
+
+            StringBuilder builder = new StringBuilder("Are you really want to ");
+
+            switch (actionID) {
+                case ACTION_DELETE:
+                    builder.append("delete item ");
+                    break;
+                case ACTION_ADD_NEW:
+                    builder.append("add item ");
+                    break;
+                case ACTION_UPDATE:
+                    builder.append("update item ");
+                    break;
+            }
+            builder.append(name);
+
         }
-        builder.append(name);
 
-        dialog = new AlertDialog.Builder(this);
+        protected ActionDialog(Context context, int action, int id) {
+            super(context);
+            this.context = context;
+            this.setTitle("Please confirm");
+        }
 
-        dialog.setTitle("Confirm")
-                .setMessage(builder.toString())
-                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialogAccept = true;
-                    }
-                })
-                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialogAccept = false;
-                    }
-                })
-                .show();
-        return dialogAccept;
     }
 }
