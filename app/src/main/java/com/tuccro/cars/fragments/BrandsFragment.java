@@ -1,4 +1,4 @@
-package com.tuccro.cars;
+package com.tuccro.cars.fragments;
 
 
 import android.app.Fragment;
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.tuccro.cars.R;
 import com.tuccro.cars.core.Brand;
 import com.tuccro.cars.core.Item;
 import com.tuccro.cars.database.DB;
@@ -25,7 +26,7 @@ public class BrandsFragment extends Fragment {
 
     Spinner spinner;
     Button button;
-    List<Brand> brandsList;
+    List<Item> brandsList;
 
     public BrandsFragment() {
         // Required empty public constructor

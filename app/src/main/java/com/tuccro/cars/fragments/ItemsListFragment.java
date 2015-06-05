@@ -1,4 +1,4 @@
-package com.tuccro.cars;
+package com.tuccro.cars.fragments;
 
 import android.app.Activity;
 import android.app.ListFragment;

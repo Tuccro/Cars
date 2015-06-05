@@ -1,4 +1,4 @@
-package com.tuccro.cars;
+package com.tuccro.cars.fragments;
 
 
 import android.app.Fragment;
@@ -7,11 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.tuccro.cars.R;
+import com.tuccro.cars.core.Item;
 import com.tuccro.cars.core.Model;
 import com.tuccro.cars.database.DB;
 import com.tuccro.cars.utils.Utils;
@@ -29,7 +30,7 @@ public class ModelsFragment extends Fragment {
     TextView tvStart;
     TextView tvEnd;
 
-    List<Model> modelsList;
+    List<Item> modelsList;
 
     public ModelsFragment() {
         // Required empty public constructor
@@ -58,7 +59,7 @@ public class ModelsFragment extends Fragment {
 
         modelsList = Utils.getModelsFromDBCursor(data.getAllModels());
 
-        spinner.setAdapter(Utils.getItemsArrayAdapter(getActivity(),  modelsList));
+        spinner.setAdapter(Utils.getItemsArrayAdapter(getActivity(), modelsList));
     }
 
     AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
@@ -66,8 +67,10 @@ public class ModelsFragment extends Fragment {
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             int startDate, endDate;
 
-            startDate = modelsList.get(position).getStartYear();
-            endDate = modelsList.get(position).getEndYear();
+            Model model = (Model) modelsList.get(position);
+
+            startDate = model.getStartYear();
+            endDate = model.getEndYear();
 
             tvStart.setText(String.valueOf(startDate));
             tvEnd.setText(String.valueOf(endDate));

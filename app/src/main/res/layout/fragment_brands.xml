@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context="com.tuccro.cars.BrandsFragment">
+    tools:context="com.tuccro.cars.fragments.BrandsFragment">
 
     <Spinner
         android:id="@+id/spinner_brands"

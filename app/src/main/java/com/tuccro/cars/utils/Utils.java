@@ -16,9 +16,9 @@ import java.util.List;
 
 public abstract class Utils implements IDBStrings {
 
-    public static ArrayList<Brand> getBrandsFromDBCursor(Cursor cursor) {
+    public static ArrayList<Item> getBrandsFromDBCursor(Cursor cursor) {
         Log.e("SIZE", String.valueOf(cursor.getCount()));
-        ArrayList<Brand> brands = new ArrayList<>(cursor.getCount());
+        ArrayList<Item> brands = new ArrayList<>(cursor.getCount());
         if(cursor.getCount()<1) return brands;
 
         int id;
@@ -35,9 +35,9 @@ public abstract class Utils implements IDBStrings {
         return brands;
     }
 
-    public static ArrayList<Model> getModelsFromDBCursor(Cursor cursor) {
+    public static ArrayList<Item> getModelsFromDBCursor(Cursor cursor) {
         Log.e("SIZE", String.valueOf(cursor.getCount()));
-        ArrayList<Model> models = new ArrayList<>(cursor.getCount());
+        ArrayList<Item> models = new ArrayList<>(cursor.getCount());
         if(cursor.getCount()<1) return models;
 
         int id;
@@ -60,9 +60,9 @@ public abstract class Utils implements IDBStrings {
         return models;
     }
 
-    public static ArrayList<Engine> getEnginesFromDBCursor(Cursor cursor) {
+    public static ArrayList<Item> getEnginesFromDBCursor(Cursor cursor) {
         Log.e("SIZE", String.valueOf(cursor.getCount()));
-        ArrayList<Engine> engines = new ArrayList<>(cursor.getCount());
+        ArrayList<Item> engines = new ArrayList<>(cursor.getCount());
         if(cursor.getCount()<1) return engines;
 
         int id;

@@ -1,8 +1,7 @@
-package com.tuccro.cars;
+package com.tuccro.cars.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,16 +9,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.tuccro.cars.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link EditFragment.OnFragmentInteractionListener} interface
+ * {@link EditFragment.OnEditListener} interface
  * to handle interaction events.
  */
 public class EditFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private OnEditListener mListener;
 
     private EditText editTextName;
     private Button buttonAdd;
@@ -40,21 +41,28 @@ public class EditFragment extends Fragment {
         buttonAdd = (Button) view.findViewById(R.id.button_add);
         buttonDelete = (Button) view.findViewById(R.id.button_delete);
 
+        buttonAdd.setOnClickListener(onClickListener);
+        buttonDelete.setOnClickListener(onClickListener);
+
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+   View.OnClickListener onClickListener = new View.OnClickListener() {
+       @Override
+       public void onClick(View v) {
+           if (mListener != null) {
+               mListener.onEdit(v, editTextName.getText().toString());
+           }
+       }
+   };
+
+
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (OnEditListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -77,9 +85,10 @@ public class EditFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnEditListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        public void onEdit(View v, String name);
     }
+
 
 }
