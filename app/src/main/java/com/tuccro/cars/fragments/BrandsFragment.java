@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import com.tuccro.cars.R;
-import com.tuccro.cars.core.Brand;
 import com.tuccro.cars.core.Item;
 import com.tuccro.cars.database.DB;
 import com.tuccro.cars.utils.Utils;
@@ -27,11 +25,11 @@ public class BrandsFragment extends Fragment {
     Spinner spinner;
     Button button;
     List<Item> brandsList;
+    private OnButtonClickListener onButtonClickListener;
 
     public BrandsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +38,15 @@ public class BrandsFragment extends Fragment {
 
         spinner = (Spinner) view.findViewById(R.id.spinner_brands);
         button = (Button) view.findViewById(R.id.button_brands);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onButtonClickListener != null) {
+                    onButtonClickListener.onButtonClick(v);
+                }
+            }
+        });
 
         init();
         return view;
@@ -53,6 +60,11 @@ public class BrandsFragment extends Fragment {
 
         data.close();
 
-        spinner.setAdapter(Utils.getItemsArrayAdapter(getActivity(),  brandsList));
+        spinner.setAdapter(Utils.getItemsArrayAdapter(getActivity(), brandsList));
+    }
+
+    public interface OnButtonClickListener {
+
+        void onButtonClick(View v);
     }
 }

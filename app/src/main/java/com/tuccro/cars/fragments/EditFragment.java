@@ -87,7 +87,7 @@ public class EditFragment extends Fragment {
      */
     public interface OnEditListener {
         // TODO: Update argument type and name
-        public void onEdit(View v, String name);
+        void onEdit(View v, String name);
     }
 
 

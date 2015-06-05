@@ -31,11 +31,17 @@ public class ModelsFragment extends Fragment {
     TextView tvEnd;
 
     List<Item> modelsList;
+    int selectedItemId;
+
+    private OnButtonClickListener onButtonClickListener;
 
     public ModelsFragment() {
         // Required empty public constructor
     }
 
+    public int getSelectedItemId() {
+        return selectedItemId;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +52,15 @@ public class ModelsFragment extends Fragment {
         button = (Button) view.findViewById(R.id.button_models);
         tvStart = (TextView) view.findViewById(R.id.text_start_date);
         tvEnd = (TextView) view.findViewById(R.id.text_end_date);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onButtonClickListener != null) {
+                    onButtonClickListener.onButtonClick(v);
+                }
+            }
+        });
 
         init();
 
@@ -68,6 +83,7 @@ public class ModelsFragment extends Fragment {
             int startDate, endDate;
 
             Model model = (Model) modelsList.get(position);
+            selectedItemId = model.getId();
 
             startDate = model.getStartYear();
             endDate = model.getEndYear();
@@ -81,4 +97,10 @@ public class ModelsFragment extends Fragment {
 
         }
     };
+
+
+    public interface OnButtonClickListener {
+
+        void onButtonClick(View v);
+    }
 }
