@@ -1,7 +1,9 @@
 package com.tuccro.cars;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 
@@ -22,6 +24,10 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
     private static final String BRANDS_MODE = "brands_mode";
     private static final String MODELS_MODE = "models_mode";
     private static final String ENGINES_MODE = "engines_mode";
+
+    private static final int ACTION_DELETE = 0;
+    private static final int ACTION_ADD_NEW = 1;
+    private static final int ACTION_UPDATE = 2;
 
     private String mode = ENGINES_MODE;
 
@@ -102,11 +108,13 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
         switch (v.getId()) {
             case R.id.button_add:
-                if (!name.isEmpty()) addItem(name);
+                if (!name.isEmpty() && isDialogAccepted(ACTION_ADD_NEW, name)) addItem(name);
                 break;
             case R.id.button_delete:
                 int id = listFragment.getSelectedPosition();
-                if (id != -1) deleteItem(id);
+                if (id != -1 && isDialogAccepted(ACTION_DELETE, listFragment.getSelectedPositionName())) {
+                    deleteItem(id);
+                }
                 break;
         }
 
@@ -162,5 +170,44 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                 setListMode(MODELS_MODE);
                 break;
         }
+    }
+    AlertDialog.Builder dialog;
+    public static boolean dialogAccept;
+
+    public boolean isDialogAccepted(int actionID, String name) {
+        dialogAccept = false;
+        StringBuilder builder = new StringBuilder("Are you really want to ");
+
+        switch (actionID) {
+            case ACTION_DELETE:
+                builder.append("delete item ");
+                break;
+            case ACTION_ADD_NEW:
+                builder.append("add item ");
+                break;
+            case ACTION_UPDATE:
+                builder.append("update item ");
+                break;
+        }
+        builder.append(name);
+
+        dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle("Confirm")
+                .setMessage(builder.toString())
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialogAccept = true;
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialogAccept = false;
+                    }
+                })
+                .show();
+        return dialogAccept;
     }
 }

@@ -5,6 +5,7 @@ import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 /**
@@ -17,10 +18,16 @@ import android.widget.ListView;
 public class ItemsListFragment extends ListFragment {
 
     private OnFragmentInteractionListener mListener;
+
+    String selectedPositionName = "";
     int selectedPosition = -1;
 
     public int getSelectedPosition() {
         return selectedPosition;
+    }
+
+    public String getSelectedPositionName() {
+        return selectedPositionName;
     }
 
     /**
@@ -63,9 +70,8 @@ public class ItemsListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-//        Toast toast = Toast.makeText(getActivity().getApplicationContext(), String.valueOf(position), Toast.LENGTH_SHORT);
-//        toast.show();
         selectedPosition = position;
+        selectedPositionName = l.getAdapter().getItem(position).toString();
     }
 
     /**
