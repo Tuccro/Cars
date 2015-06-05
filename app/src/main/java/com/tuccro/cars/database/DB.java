@@ -33,6 +33,7 @@ public class DB implements IDBStrings {
     }
 
     public void deleteBrand(int id) {
+        db.execSQL(FOREIGN_KEYS_ON);
         db.delete(DB_TABLE_BRAND, BRAND_ID + " = " + id, null);
     }
 
@@ -54,6 +55,7 @@ public class DB implements IDBStrings {
     }
 
     public void deleteModel(int id) {
+        db.execSQL(FOREIGN_KEYS_ON);
         db.delete(DB_TABLE_MODEL, MODEL_ID + " = " + id, null);
     }
 

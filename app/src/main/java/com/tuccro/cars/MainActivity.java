@@ -86,6 +86,7 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                 currentItemsList = Utils.getEnginesFromDBCursor(dataBase.getAllEngines());
                 break;
         }
+        this.mode = mode;
         initItemsList(currentItemsList);
         dataBase.close();
     }

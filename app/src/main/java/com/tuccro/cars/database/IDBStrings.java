@@ -11,7 +11,7 @@ public interface IDBStrings {
             "\t`id_engine`\tINTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "\t`id_model`\tINTEGER NOT NULL,\n" +
             "\t`name`\tTEXT,\n" +
-            "\tFOREIGN KEY (id_model) REFERENCES MODEL(id_model)\n" +
+            "\tFOREIGN KEY (id_model) REFERENCES MODEL(id_model) ON DELETE CASCADE\n" +
             ");\n";
 
     String CREATE_TABLE_MODEL = "CREATE TABLE `MODEL` (\n" +
@@ -20,8 +20,10 @@ public interface IDBStrings {
             "\t`name`\tTEXT NOT NULL,\n" +
             "\t`start_year`\tINTEGER,\n" +
             "\t`end_year`\tINTEGER,\n" +
-            "\tFOREIGN KEY (id_brand) REFERENCES BRAND(id_brand)\n" +
+            "\tFOREIGN KEY (id_brand) REFERENCES BRAND(id_brand) ON DELETE CASCADE\n" +
             ");";
+
+    String FOREIGN_KEYS_ON = "PRAGMA foreign_keys = ON;";
 
     String DB_TABLE_BRAND = "BRAND";
     String DB_TABLE_MODEL = "MODEL";
