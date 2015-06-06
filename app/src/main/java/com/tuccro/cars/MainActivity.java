@@ -26,11 +26,11 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
     private static final String MODELS_MODE = "models_mode";
     private static final String ENGINES_MODE = "engines_mode";
 
+    private String mode = ENGINES_MODE;
+
     public static final int ACTION_DELETE = 0;
     public static final int ACTION_ADD_NEW = 1;
     public static final int ACTION_UPDATE = 2;
-
-    private String mode = ENGINES_MODE;
 
     FragmentTransaction fragTrans;
 
