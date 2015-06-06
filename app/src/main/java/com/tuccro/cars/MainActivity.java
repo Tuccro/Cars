@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.tuccro.cars.core.Item;
 import com.tuccro.cars.database.DB;
@@ -109,17 +108,10 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
     @Override
     public void onEdit(View v, String name) {
 
-        switch (v.getId()) {
-            case R.id.button_add:
-                if (!name.isEmpty() ) addItem(name);
-                break;
-            case R.id.button_delete:
-                int id = listFragment.getSelectedPosition();
-                if (id != -1 ) {
-                    deleteItem(id);
-                }
-                break;
-        }
+
+        ActionDialog dialog = new ActionDialog(this, v, name);
+        dialog.show();
+
     }
 
     private void deleteItem(int id) {
@@ -178,33 +170,51 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
         Context context;
 
-        protected ActionDialog(Context context, View v, String name) {
+        protected ActionDialog(Context context, final View v, final String name) {
             super(context);
             this.context = context;
             this.setTitle("Please confirm");
 
             StringBuilder builder = new StringBuilder("Are you really want to ");
 
-//            switch (actionID) {
-//                case ACTION_DELETE:
-//                    builder.append("delete item ");
-//                    break;
-//                case ACTION_ADD_NEW:
-//                    builder.append("add item ");
-//                    break;
+            switch (v.getId()) {
+                case R.id.button_delete:
+                    builder.append("delete item " + listFragment.getSelectedPositionName() + "?");
+                    break;
+                case R.id.button_add:
+                    builder.append("add item " + name + "?");
+                    break;
 //                case ACTION_UPDATE:
 //                    builder.append("update item ");
 //                    break;
-//            }
-            builder.append(name);
+            }
 
+            this.setMessage(builder.toString());
+
+            this.setButton(AlertDialog.BUTTON_POSITIVE, "YES", new OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    switch (v.getId()) {
+                        case R.id.button_add:
+                            if (!name.isEmpty()) addItem(name);
+                            break;
+                        case R.id.button_delete:
+                            int id = listFragment.getSelectedPosition();
+                            if (id != -1) {
+                                deleteItem(id);
+                            }
+                            break;
+                    }
+                }
+            });
+
+            this.setButton(AlertDialog.BUTTON_NEGATIVE, "NO", new OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
         }
-
-        protected ActionDialog(Context context, int action, int id) {
-            super(context);
-            this.context = context;
-            this.setTitle("Please confirm");
-        }
-
     }
 }
