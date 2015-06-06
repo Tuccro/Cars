@@ -212,7 +212,6 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
             this.setButton(AlertDialog.BUTTON_NEGATIVE, "NO", new OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
                 }
             });
         }
