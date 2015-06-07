@@ -24,6 +24,7 @@ public class EditFragment extends Fragment {
 
     private EditText editTextName;
     private Button buttonAdd;
+    private Button buttonUpdate;
     private Button buttonDelete;
 
     public EditFragment() {
@@ -37,8 +38,12 @@ public class EditFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit, container, false);
 
         editTextName = (EditText) view.findViewById(R.id.edit_text_name);
+
         buttonAdd = (Button) view.findViewById(R.id.button_add);
         buttonDelete = (Button) view.findViewById(R.id.button_delete);
+
+        buttonUpdate = (Button) view.findViewById(R.id.button_update);
+        buttonUpdate.setOnClickListener(onClickListener);
 
         buttonAdd.setOnClickListener(onClickListener);
         buttonDelete.setOnClickListener(onClickListener);

@@ -170,7 +170,7 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                     builder.append("add item " + name + "?");
                     break;
                 case R.id.button_update:
-                    builder.append("update item " + name + "?");
+                    builder.append("update item " + listFragment.getSelectedPositionName() + "?");
                     break;
             }
 
