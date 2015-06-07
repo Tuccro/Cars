@@ -139,6 +139,31 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         db.close();
     }
 
+    private void updateItem(int id, String name) {
+        DB db = new DB(getApplicationContext());
+        db.open();
+        switch (mode) {
+            case BRANDS_MODE:
+                db.updateBrand(id, name);
+                brandsFragment.init();
+                break;
+            case MODELS_MODE:
+                int start = modelsFragment.getEditTextStart();
+                int end = modelsFragment.getEditTextEnd();
+                if ((start < 1900 && start > Utils.getCurrentYear()) ||
+                        (end < 1900 && end > Utils.getCurrentYear())) break;
+
+                db.updateModel(id, brandsFragment.getSelectedItemId(), name, start, end);
+                modelsFragment.init();
+                break;
+            case ENGINES_MODE:
+                db.updateEngine(id, modelsFragment.getSelectedItemId(), name);
+                break;
+        }
+        setListMode(mode);
+        db.close();
+    }
+
     @Override
     public void onButtonClick(View v) {
         switch (v.getId()) {
