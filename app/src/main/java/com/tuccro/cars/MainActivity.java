@@ -57,7 +57,6 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         fragTrans.commit();
 
         setListMode(ENGINES_MODE);
-
     }
 
     @Override
@@ -93,10 +92,8 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
     @Override
     public void onEdit(View v, String name) {
 
-
         ActionDialog dialog = new ActionDialog(this, v, name);
         dialog.show();
-
     }
 
     private void deleteItem(int id) {
@@ -105,9 +102,11 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         switch (mode) {
             case BRANDS_MODE:
                 db.deleteBrand(currentItemsList.get(id).getId());
+                brandsFragment.init();
                 break;
             case MODELS_MODE:
                 db.deleteModel(currentItemsList.get(id).getId());
+                modelsFragment.init();
                 break;
             case ENGINES_MODE:
                 db.deleteEngine(currentItemsList.get(id).getId());
@@ -122,6 +121,8 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         db.open();
         switch (mode) {
             case BRANDS_MODE:
+                db.addBrand(name);
+                brandsFragment.init();
                 break;
             case MODELS_MODE:
                 int start = modelsFragment.getEditTextStart();
@@ -130,6 +131,7 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                         (end < 1900 && end > Utils.getCurrentYear())) break;
 
                 db.addModel(brandsFragment.getSelectedItemId(), name, start, end);
+                modelsFragment.init();
                 break;
             case ENGINES_MODE:
                 db.addEngine(modelsFragment.getSelectedItemId(), name);
