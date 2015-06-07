@@ -30,7 +30,6 @@ public class EditFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,16 +46,14 @@ public class EditFragment extends Fragment {
         return view;
     }
 
-   View.OnClickListener onClickListener = new View.OnClickListener() {
-       @Override
-       public void onClick(View v) {
-           if (mListener != null) {
-               mListener.onEdit(v, editTextName.getText().toString());
-           }
-       }
-   };
-
-
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (mListener != null) {
+                mListener.onEdit(v, editTextName.getText().toString());
+            }
+        }
+    };
 
     @Override
     public void onAttach(Activity activity) {

@@ -32,6 +32,14 @@ public class DB implements IDBStrings {
         db.insert(DB_TABLE_BRAND, null, cv);
     }
 
+    public void updateBrand(int idBrand, String name) {
+        ContentValues cv = new ContentValues();
+        cv.put(BRAND_NAME, name);
+
+        String whereClause = BRAND_ID + "=" + String.valueOf(idBrand);
+        db.update(DB_TABLE_BRAND, cv, whereClause, null);
+    }
+
     public void deleteBrand(int id) {
         db.execSQL(FOREIGN_KEYS_ON);
         db.delete(DB_TABLE_BRAND, BRAND_ID + " = " + id, null);
@@ -44,6 +52,18 @@ public class DB implements IDBStrings {
         cv.put(MODEL_START_YEAR, startYear);
         cv.put(MODEL_END_YEAR, endYear);
         db.insert(DB_TABLE_MODEL, null, cv);
+    }
+
+    public void updateModel(int idModel, int idBrand, String name, int startYear, int endYear) {
+        ContentValues cv = new ContentValues();
+        cv.put(MODEL_BRAND_ID, idBrand);
+        cv.put(MODEL_NAME, name);
+        cv.put(MODEL_START_YEAR, startYear);
+        cv.put(MODEL_END_YEAR, endYear);
+        db.insert(DB_TABLE_MODEL, null, cv);
+
+        String whereClause = MODEL_ID + "=" + String.valueOf(idModel);
+        db.update(DB_TABLE_MODEL, cv, whereClause, null);
     }
 
     public void addModel(int idBrand, String name, int startYear) {
@@ -66,6 +86,16 @@ public class DB implements IDBStrings {
         db.insert(DB_TABLE_ENGINE, null, cv);
     }
 
+    public void updateEngine(int idEngine, int idModel, String name) {
+        ContentValues cv = new ContentValues();
+        cv.put(ENGINE_MODEL_ID, idModel);
+        cv.put(ENGINE_NAME, name);
+        db.insert(DB_TABLE_ENGINE, null, cv);
+
+        String whereClause = ENGINE_ID + "=" + String.valueOf(idEngine);
+        db.update(DB_TABLE_ENGINE, cv, whereClause, null);
+    }
+
     public void deleteEngine(int id) {
         db.delete(DB_TABLE_ENGINE, ENGINE_ID + " = " + id, null);
     }
@@ -73,7 +103,6 @@ public class DB implements IDBStrings {
     public Cursor getAllBrands() {
         return db.query(DB_TABLE_BRAND, null, null, null, null, null, BRAND_NAME);
     }
-
 
     public Cursor getAllModels() {
         return db.query(DB_TABLE_MODEL, null, null, null, null, null, MODEL_NAME);
