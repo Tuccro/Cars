@@ -90,8 +90,13 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
     @Override
     public void onEdit(View v, String name) {
-        ActionDialog dialog = new ActionDialog(this, v, name);
-        dialog.show();
+        if (((v.getId() == R.id.button_delete ||
+                v.getId() == R.id.button_update) &&
+                listFragment.getSelectedPosition() >= 0) ||
+                v.getId() == R.id.button_add) {
+            ActionDialog dialog = new ActionDialog(this, v, name);
+            dialog.show();
+        }
     }
 
     private void deleteItem(int id) {
@@ -214,6 +219,10 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                             if (id != -1) {
                                 deleteItem(id);
                             }
+                            break;
+                        case R.id.button_update:
+                            if (!name.isEmpty())
+                                updateItem(listFragment.getSelectedPosition(), name);
                             break;
                     }
                 }
