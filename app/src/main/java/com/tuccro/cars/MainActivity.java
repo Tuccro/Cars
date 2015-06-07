@@ -28,10 +28,6 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
     private String mode = ENGINES_MODE;
 
-    public static final int ACTION_DELETE = 0;
-    public static final int ACTION_ADD_NEW = 1;
-    public static final int ACTION_UPDATE = 2;
-
     FragmentTransaction fragTrans;
 
     BrandsFragment brandsFragment;
@@ -67,17 +63,6 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
     @Override
     public void onBackPressed() {
         setListMode(ENGINES_MODE);
-//        new AlertDialog.Builder(this)
-//                .setTitle("Выйти из приложения?")
-//                .setMessage("Вы действительно хотите выйти?")
-//                .setNegativeButton(android.R.string.no, null)
-//                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface arg0, int arg1) {
-//                        //SomeActivity - имя класса Activity для которой переопределяем onBackPressed();
-//
-//                    }
-//                }).create().show();
-//        super.onBackPressed();
     }
 
     void setListMode(String mode) {
