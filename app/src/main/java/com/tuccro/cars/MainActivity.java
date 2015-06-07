@@ -85,13 +85,11 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
     }
 
     void initItemsList(List list) {
-
         listFragment.setListAdapter(Utils.getItemsArrayAdapter(this, list));
     }
 
     @Override
     public void onEdit(View v, String name) {
-
         ActionDialog dialog = new ActionDialog(this, v, name);
         dialog.show();
     }
@@ -171,9 +169,9 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                 case R.id.button_add:
                     builder.append("add item " + name + "?");
                     break;
-//                case ACTION_UPDATE:
-//                    builder.append("update item ");
-//                    break;
+                case R.id.button_update:
+                    builder.append("update item " + name + "?");
+                    break;
             }
 
             this.setMessage(builder.toString());
