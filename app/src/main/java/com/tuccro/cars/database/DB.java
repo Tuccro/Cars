@@ -36,7 +36,7 @@ public class DB implements IDBStrings {
         ContentValues cv = new ContentValues();
         cv.put(BRAND_NAME, name);
 
-        String whereClause = BRAND_ID + "=" + String.valueOf(idBrand);
+        String whereClause = BRAND_ID + " = " + String.valueOf(idBrand);
         db.update(DB_TABLE_BRAND, cv, whereClause, null);
     }
 
@@ -62,7 +62,7 @@ public class DB implements IDBStrings {
         cv.put(MODEL_END_YEAR, endYear);
         db.insert(DB_TABLE_MODEL, null, cv);
 
-        String whereClause = MODEL_ID + "=" + String.valueOf(idModel);
+        String whereClause = MODEL_ID + " = " + String.valueOf(idModel);
         db.update(DB_TABLE_MODEL, cv, whereClause, null);
     }
 
@@ -92,7 +92,7 @@ public class DB implements IDBStrings {
         cv.put(ENGINE_NAME, name);
         db.insert(DB_TABLE_ENGINE, null, cv);
 
-        String whereClause = ENGINE_ID + "=" + String.valueOf(idEngine);
+        String whereClause = ENGINE_ID + " = " + String.valueOf(idEngine);
         db.update(DB_TABLE_ENGINE, cv, whereClause, null);
     }
 

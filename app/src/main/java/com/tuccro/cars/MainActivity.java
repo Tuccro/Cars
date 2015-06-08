@@ -64,6 +64,10 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         setListMode(ENGINES_MODE);
     }
 
+    /**
+     * Sets mode for list and edit buttons
+     * @param mode final static String variable with postfix "_MODE"
+     */
     void setListMode(String mode) {
         dataBase = new DB(this);
         dataBase.open();
@@ -84,10 +88,19 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         dataBase.close();
     }
 
+    /**
+     * Initializes items list fragment
+     * @param list list with Items
+     */
     void initItemsList(List list) {
         listFragment.setListAdapter(Utils.getItemsArrayAdapter(this, list));
     }
 
+    /**
+     * Handler for edit buttons
+     * @param v Button that was pressed
+     * @param name value of EditText
+     */
     @Override
     public void onEdit(View v, String name) {
         if (((v.getId() == R.id.button_delete ||
@@ -99,6 +112,10 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         }
     }
 
+    /**
+     * Method that removes Item from database
+     * @param id item id in DB
+     */
     private void deleteItem(int id) {
         DB db = new DB(getApplicationContext());
         db.open();
@@ -119,6 +136,10 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         db.close();
     }
 
+    /**
+     * Method that adds Item to database
+     * @param name name of new Item
+     */
     private void addItem(String name) {
         DB db = new DB(getApplicationContext());
         db.open();
@@ -144,6 +165,11 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         db.close();
     }
 
+    /**
+     * Method that updates Item in DB by id
+     * @param id id of Item
+     * @param name new name
+     */
     private void updateItem(int id, String name) {
         DB db = new DB(getApplicationContext());
         db.open();
@@ -169,6 +195,10 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         db.close();
     }
 
+    /**
+     * Method from interfaces from BrandsFragment and ModelsFragment that handles buttons clicks
+     * @param v pressed button
+     */
     @Override
     public void onButtonClick(View v) {
         switch (v.getId()) {
@@ -181,6 +211,9 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         }
     }
 
+    /**
+     * Inner class creates dialog for all DB actions.
+     */
     public class ActionDialog extends AlertDialog {
 
         Context context;
