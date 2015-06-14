@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import com.tuccro.cars.R;
+
 
 /**
  * A fragment representing a list of Items.
@@ -48,6 +50,7 @@ public class ItemsListFragment extends ListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override
@@ -58,7 +61,11 @@ public class ItemsListFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        ListView listView = getListView();
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        listView.setSelector(R.drawable.items_list_fragment);
+        listView.setBackgroundColor(getResources().getColor(R.color.Orange));
+        listView.setVerticalScrollBarEnabled(false);
     }
 
     @Override
