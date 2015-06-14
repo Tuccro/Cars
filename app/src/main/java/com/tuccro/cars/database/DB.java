@@ -5,6 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import static com.tuccro.cars.database.DBUtils.generateUpdateBrandString;
+import static com.tuccro.cars.database.DBUtils.generateUpdateEngineString;
+import static com.tuccro.cars.database.DBUtils.generateUpdateModelString;
+
 public class DB implements IDBStrings {
 
     private final Context context;
@@ -33,11 +37,8 @@ public class DB implements IDBStrings {
     }
 
     public void updateBrand(int idBrand, String name) {
-        ContentValues cv = new ContentValues();
-        cv.put(BRAND_NAME, name);
-
-        String whereClause = BRAND_ID + " = " + String.valueOf(idBrand);
-        db.update(DB_TABLE_BRAND, cv, whereClause, null);
+        String query = generateUpdateBrandString(idBrand, name);
+        db.execSQL(query);
     }
 
     public void deleteBrand(int id) {
@@ -55,15 +56,9 @@ public class DB implements IDBStrings {
     }
 
     public void updateModel(int idModel, int idBrand, String name, int startYear, int endYear) {
-        ContentValues cv = new ContentValues();
-        cv.put(MODEL_BRAND_ID, idBrand);
-        cv.put(MODEL_NAME, name);
-        cv.put(MODEL_START_YEAR, startYear);
-        cv.put(MODEL_END_YEAR, endYear);
-        db.insert(DB_TABLE_MODEL, null, cv);
 
-        String whereClause = MODEL_ID + " = " + String.valueOf(idModel);
-        db.update(DB_TABLE_MODEL, cv, whereClause, null);
+        String query = generateUpdateModelString(idModel, idBrand, name, startYear, endYear);
+        db.execSQL(query);
     }
 
     public void addModel(int idBrand, String name, int startYear) {
@@ -87,13 +82,9 @@ public class DB implements IDBStrings {
     }
 
     public void updateEngine(int idEngine, int idModel, String name) {
-        ContentValues cv = new ContentValues();
-        cv.put(ENGINE_MODEL_ID, idModel);
-        cv.put(ENGINE_NAME, name);
-        db.insert(DB_TABLE_ENGINE, null, cv);
 
-        String whereClause = ENGINE_ID + " = " + String.valueOf(idEngine);
-        db.update(DB_TABLE_ENGINE, cv, whereClause, null);
+        String query = generateUpdateEngineString(idEngine, idModel, name);
+        db.execSQL(query);
     }
 
     public void deleteEngine(int id) {
