@@ -18,8 +18,17 @@ public class ItemsListFragment extends ListFragment {
 
     private OnFragmentInteractionListener mListener;
 
-    String selectedPositionName = "";
-    int selectedPosition = -1;
+    private String selectedPositionName = "";
+    private int selectedPosition = -1;
+    private boolean actionDone = true;
+
+    public boolean isActionDone() {
+        return actionDone;
+    }
+
+    public void setActionDone(boolean actionDone) {
+        this.actionDone = actionDone;
+    }
 
     public int getSelectedPosition() {
         return selectedPosition;
@@ -69,6 +78,7 @@ public class ItemsListFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
         selectedPosition = position;
         selectedPositionName = l.getAdapter().getItem(position).toString();
+        setActionDone(false);
     }
 
     @Override

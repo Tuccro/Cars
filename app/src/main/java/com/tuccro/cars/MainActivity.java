@@ -66,6 +66,7 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
     /**
      * Sets mode for list and edit buttons
+     *
      * @param mode final static String variable with postfix "_MODE"
      */
     void setListMode(String mode) {
@@ -90,6 +91,7 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
     /**
      * Initializes items list fragment
+     *
      * @param list list with Items
      */
     void initItemsList(List list) {
@@ -98,14 +100,15 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
     /**
      * Handler for edit buttons
-     * @param v Button that was pressed
+     *
+     * @param v    Button that was pressed
      * @param name value of EditText
      */
     @Override
     public void onEdit(View v, String name) {
-        if (((v.getId() == R.id.button_delete ||
-                v.getId() == R.id.button_update) &&
-                listFragment.getSelectedPosition() >= 0) ||
+        if (((v.getId() == R.id.button_delete || v.getId() == R.id.button_update) &&
+                listFragment.getSelectedPosition() >= 0 &&
+                !listFragment.isActionDone()) ||
                 v.getId() == R.id.button_add) {
             ActionDialog dialog = new ActionDialog(this, v, name);
             dialog.show();
@@ -114,6 +117,7 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
     /**
      * Method that removes Item from database
+     *
      * @param id item id in DB
      */
     private void deleteItem(int id) {
@@ -134,10 +138,12 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         }
         setListMode(mode);
         db.close();
+        listFragment.setActionDone(true);
     }
 
     /**
      * Method that adds Item to database
+     *
      * @param name name of new Item
      */
     private void addItem(String name) {
@@ -167,7 +173,8 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
     /**
      * Method that updates Item in DB by id
-     * @param id id of Item
+     *
+     * @param id   id of Item
      * @param name new name
      */
     private void updateItem(int id, String name) {
@@ -193,10 +200,12 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         }
         setListMode(mode);
         db.close();
+        listFragment.setActionDone(true);
     }
 
     /**
      * Method from interfaces from BrandsFragment and ModelsFragment that handles buttons clicks
+     *
      * @param v pressed button
      */
     @Override
