@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.tuccro.cars.R;
 import com.tuccro.cars.core.Item;
@@ -114,8 +113,19 @@ public class ModelsFragment extends Fragment {
         data.open();
 
         modelsList = Utils.getModelsFromDBCursor(data.getAllModels());
-
         spinner.setAdapter(Utils.getItemsArrayAdapter(getActivity(), modelsList));
+
+        data.close();
+    }
+
+    public void init(int brandId) {
+        DB data = new DB(getActivity().getApplicationContext());
+        data.open();
+
+        modelsList = Utils.getModelsFromDBCursor(data.getAllBrandModels(brandId));
+        spinner.setAdapter(Utils.getItemsArrayAdapter(getActivity(), modelsList));
+
+        data.close();
     }
 
     AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {

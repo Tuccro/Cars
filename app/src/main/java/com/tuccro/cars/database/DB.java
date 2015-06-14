@@ -103,4 +103,8 @@ public class DB implements IDBStrings {
     public Cursor getAllEngines() {
         return db.query(DB_TABLE_ENGINE, null, null, null, null, null, ENGINE_NAME);
     }
+
+    public Cursor getAllBrandModels(int idBrand) {
+        return db.query(DB_TABLE_MODEL, null, MODEL_BRAND_ID + "=?", new String[]{String.valueOf(idBrand)}, null, null, MODEL_NAME);
+    }
 }
