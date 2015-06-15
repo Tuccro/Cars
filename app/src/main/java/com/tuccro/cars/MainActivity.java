@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.tuccro.cars.core.Item;
 import com.tuccro.cars.database.DB;
@@ -78,11 +77,13 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                 currentItemsList = Utils.getBrandsFromDBCursor(dataBase.getAllBrands());
                 break;
             case MODELS_MODE:
-                currentItemsList = Utils.getModelsFromDBCursor(dataBase.getAllModels());
+                currentItemsList = Utils.getModelsFromDBCursor(dataBase.
+                        getAllBrandModels(brandsFragment.getSelectedItemId()));
                 modelsFragment.setEnableYearsEditTexts(true);
                 break;
             case ENGINES_MODE:
-                currentItemsList = Utils.getEnginesFromDBCursor(dataBase.getAllEngines());
+                currentItemsList = Utils.getEnginesFromDBCursor(dataBase.
+                        getAllModelEngines(modelsFragment.getSelectedItemId()));
                 break;
         }
         this.mode = mode;
@@ -223,7 +224,7 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
 
     @Override
     public void onModelsSpinnerClick(int modelId) {
-        Toast.makeText(MainActivity.this, String.valueOf(modelId), Toast.LENGTH_SHORT).show();
+        setListMode(mode);
     }
 
     @Override
