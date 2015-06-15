@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
+import com.tuccro.cars.R;
 import com.tuccro.cars.core.Brand;
 import com.tuccro.cars.core.Engine;
 import com.tuccro.cars.core.Item;

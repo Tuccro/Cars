@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.tuccro.cars.core.Item;
 import com.tuccro.cars.database.DB;
@@ -218,6 +219,12 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                 setListMode(MODELS_MODE);
                 break;
         }
+    }
+
+    @Override
+    public void onBrandSpinnerSelect(int brandId) {
+        modelsFragment.init(brandId);
+//        Toast.makeText(MainActivity.this, String.valueOf(brandId), Toast.LENGTH_SHORT).show();
     }
 
     /**

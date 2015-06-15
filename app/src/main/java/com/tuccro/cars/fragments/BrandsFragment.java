@@ -99,6 +99,7 @@ public class BrandsFragment extends Fragment {
             int startDate, endDate;
 
             selectedItemId = brandsList.get(position).getId();
+            onButtonClickListener.onBrandSpinnerSelect(selectedItemId);
         }
 
         @Override
@@ -111,5 +112,6 @@ public class BrandsFragment extends Fragment {
     public interface OnButtonClickListener {
 
         void onButtonClick(View v);
+        void onBrandSpinnerSelect(int brandId);
     }
 }
