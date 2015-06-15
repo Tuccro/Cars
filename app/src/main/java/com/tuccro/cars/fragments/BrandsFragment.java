@@ -13,7 +13,6 @@ import android.widget.Spinner;
 
 import com.tuccro.cars.R;
 import com.tuccro.cars.core.Item;
-import com.tuccro.cars.core.Model;
 import com.tuccro.cars.database.DB;
 import com.tuccro.cars.utils.Utils;
 
@@ -91,7 +90,6 @@ public class BrandsFragment extends Fragment {
         spinner.setAdapter(Utils.getItemsArrayAdapter(getActivity(), brandsList));
     }
 
-
     AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
 
         @Override
@@ -108,10 +106,10 @@ public class BrandsFragment extends Fragment {
         }
     };
 
-
     public interface OnButtonClickListener {
 
         void onButtonClick(View v);
+
         void onBrandSpinnerSelect(int brandId);
     }
 }

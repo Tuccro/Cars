@@ -50,11 +50,6 @@ public class ModelsFragment extends Fragment {
         return editMode;
     }
 
-    public void setEnableYearsEditTexts(boolean b) {
-        tvStart.setEnabled(b);
-        tvEnd.setEnabled(b);
-    }
-
     public void setEditMode(boolean editMode) {
         this.editMode = editMode;
 
@@ -171,7 +166,6 @@ public class ModelsFragment extends Fragment {
 
         }
     };
-
 
     public interface OnButtonClickListener {
 

@@ -91,6 +91,4 @@ public class EditFragment extends Fragment {
         // TODO: Update argument type and name
         void onEdit(View v, String name);
     }
-
-
 }

@@ -13,7 +13,6 @@ public class DB implements IDBStrings {
 
     private final Context context;
 
-
     private DBHelper dbHelper;
     private SQLiteDatabase db;
 
@@ -98,7 +97,6 @@ public class DB implements IDBStrings {
     public Cursor getAllModels() {
         return db.query(DB_TABLE_MODEL, null, null, null, null, null, MODEL_NAME);
     }
-
 
     public Cursor getAllEngines() {
         return db.query(DB_TABLE_ENGINE, null, null, null, null, null, ENGINE_NAME);

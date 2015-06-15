@@ -106,5 +106,4 @@ public class ItemsListFragment extends ListFragment {
     public interface OnFragmentInteractionListener {
         public void onFragmentInteraction(String id);
     }
-
 }
