@@ -136,6 +136,7 @@ public class ModelsFragment extends Fragment {
 
             Model model = (Model) modelsList.get(position);
             selectedItemId = model.getId();
+            onButtonClickListener.onModelsSpinnerClick(selectedItemId);
 
             startDate = model.getStartYear();
             endDate = model.getEndYear();
@@ -154,5 +155,6 @@ public class ModelsFragment extends Fragment {
     public interface OnButtonClickListener {
 
         void onButtonClick(View v);
+        void onModelsSpinnerClick(int modelId);
     }
 }

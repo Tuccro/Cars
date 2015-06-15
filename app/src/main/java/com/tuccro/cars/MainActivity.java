@@ -222,9 +222,13 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
     }
 
     @Override
+    public void onModelsSpinnerClick(int modelId) {
+        Toast.makeText(MainActivity.this, String.valueOf(modelId), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onBrandSpinnerSelect(int brandId) {
         modelsFragment.init(brandId);
-//        Toast.makeText(MainActivity.this, String.valueOf(brandId), Toast.LENGTH_SHORT).show();
     }
 
     /**

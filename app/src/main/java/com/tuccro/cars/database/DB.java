@@ -105,6 +105,12 @@ public class DB implements IDBStrings {
     }
 
     public Cursor getAllBrandModels(int idBrand) {
-        return db.query(DB_TABLE_MODEL, null, MODEL_BRAND_ID + "=?", new String[]{String.valueOf(idBrand)}, null, null, MODEL_NAME);
+        return db.query(DB_TABLE_MODEL, null, MODEL_BRAND_ID + "=?",
+                new String[]{String.valueOf(idBrand)}, null, null, MODEL_NAME);
+    }
+
+    public Cursor getAllModelEngines(int idModel) {
+        return db.query(DB_TABLE_ENGINE, null, ENGINE_MODEL_ID + "=?",
+                new String[]{String.valueOf(idModel)}, null, null, ENGINE_NAME);
     }
 }
