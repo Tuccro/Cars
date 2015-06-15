@@ -23,6 +23,12 @@ public interface IDBStrings {
             "\tFOREIGN KEY (id_brand) REFERENCES BRAND(id_brand) ON DELETE CASCADE\n" +
             ");";
 
+    String CREATE_UNIQUE_INDEX_FOR_MODELS = "CREATE UNIQUE INDEX model_index ON 'MODEL'" +
+            "(name, id_brand);";
+
+    String CREATE_UNIQUE_INDEX_FOR_ENGINES = "CREATE UNIQUE INDEX engine_index ON 'ENGINE'" +
+            "(name, id_model);";
+
     String FOREIGN_KEYS_ON = "PRAGMA foreign_keys = ON;";
 
     String DB_TABLE_BRAND = "BRAND";

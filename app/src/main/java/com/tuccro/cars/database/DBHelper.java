@@ -15,8 +15,10 @@ class DBHelper extends SQLiteOpenHelper implements IDBStrings {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_BRAND);
-        db.execSQL(CREATE_TABLE_ENGINE);
         db.execSQL(CREATE_TABLE_MODEL);
+        db.execSQL(CREATE_UNIQUE_INDEX_FOR_MODELS);
+        db.execSQL(CREATE_TABLE_ENGINE);
+        db.execSQL(CREATE_UNIQUE_INDEX_FOR_ENGINES);
 
         insertBrands(db);
         insertModels(db);
