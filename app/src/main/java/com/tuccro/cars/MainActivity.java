@@ -72,23 +72,30 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
     void setListMode(String mode) {
         dataBase = new DB(this);
         dataBase.open();
+        fragTrans = getFragmentManager().beginTransaction();
         switch (mode) {
             case BRANDS_MODE:
                 currentItemsList = Utils.getBrandsFromDBCursor(dataBase.getAllBrands());
+                fragTrans.hide(modelsFragment);
+                fragTrans.hide(brandsFragment);
                 break;
             case MODELS_MODE:
                 currentItemsList = Utils.getModelsFromDBCursor(dataBase.
                         getAllBrandModels(brandsFragment.getSelectedItemId()));
-                modelsFragment.setEnableYearsEditTexts(true);
+                modelsFragment.setEditMode(true);
                 break;
             case ENGINES_MODE:
                 currentItemsList = Utils.getEnginesFromDBCursor(dataBase.
                         getAllModelEngines(modelsFragment.getSelectedItemId()));
+                fragTrans.show(modelsFragment);
+                fragTrans.show(brandsFragment);
+                if (modelsFragment.isEditMode()) modelsFragment.setEditMode(false);
                 break;
         }
         this.mode = mode;
         initItemsList(currentItemsList);
         dataBase.close();
+        fragTrans.commit();
     }
 
     /**

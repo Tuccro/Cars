@@ -34,6 +34,8 @@ public class ModelsFragment extends Fragment {
     List<Item> modelsList;
     int selectedItemId;
 
+    boolean editMode = false;
+
     private OnButtonClickListener onButtonClickListener;
 
     public ModelsFragment() {
@@ -44,9 +46,28 @@ public class ModelsFragment extends Fragment {
         return selectedItemId;
     }
 
+    public boolean isEditMode() {
+        return editMode;
+    }
+
     public void setEnableYearsEditTexts(boolean b) {
         tvStart.setEnabled(b);
         tvEnd.setEnabled(b);
+    }
+
+    public void setEditMode(boolean editMode) {
+        this.editMode = editMode;
+
+        tvStart.setEnabled(editMode);
+        tvEnd.setEnabled(editMode);
+
+        if (editMode) {
+            spinner.setVisibility(View.INVISIBLE);
+            button.setVisibility(View.INVISIBLE);
+        } else {
+            spinner.setVisibility(View.VISIBLE);
+            button.setVisibility(View.VISIBLE);
+        }
     }
 
     public int getEditTextStart() {
@@ -155,6 +176,7 @@ public class ModelsFragment extends Fragment {
     public interface OnButtonClickListener {
 
         void onButtonClick(View v);
+
         void onModelsSpinnerClick(int modelId);
     }
 }
