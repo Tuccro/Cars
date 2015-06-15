@@ -101,8 +101,6 @@ public class ModelsFragment extends Fragment {
             }
         });
 
-        init();
-
         spinner.setOnItemSelectedListener(listener);
         return view;
     }
