@@ -88,6 +88,11 @@ public class BrandsFragment extends Fragment {
         data.close();
 
         spinner.setAdapter(Utils.getItemsArrayAdapter(getActivity(), brandsList));
+
+        if (brandsList.isEmpty()) {
+            selectedItemId = -1;
+            onButtonClickListener.onBrandSpinnerSelect(-1);
+        }
     }
 
     AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {

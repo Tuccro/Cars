@@ -140,6 +140,14 @@ public class ModelsFragment extends Fragment {
         spinner.setAdapter(Utils.getItemsArrayAdapter(getActivity(), modelsList));
 
         data.close();
+
+        if (modelsList.isEmpty()) {
+            selectedItemId = -1;
+            onButtonClickListener.onModelsSpinnerClick(-1);
+
+            tvStart.setText("");
+            tvEnd.setText("");
+        }
     }
 
     AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
@@ -161,7 +169,6 @@ public class ModelsFragment extends Fragment {
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-
         }
     };
 

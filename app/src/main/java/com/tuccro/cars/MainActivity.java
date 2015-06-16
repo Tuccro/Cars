@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.tuccro.cars.core.Item;
 import com.tuccro.cars.database.DB;
@@ -169,11 +170,23 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                 if ((start < 1900 && start > Utils.getCurrentYear()) ||
                         (end < 1900 && end > Utils.getCurrentYear())) break;
 
-                db.addModel(brandsFragment.getSelectedItemId(), name, start, end);
-                modelsFragment.init();
+                int brandId = brandsFragment.getSelectedItemId();
+
+                if (brandId == -1) {
+                    Toast.makeText(this, "Create a brand first!", Toast.LENGTH_SHORT).show();
+                } else {
+                    db.addModel(brandsFragment.getSelectedItemId(), name, start, end);
+                    modelsFragment.init();
+                }
                 break;
             case ENGINES_MODE:
-                db.addEngine(modelsFragment.getSelectedItemId(), name);
+                int modelId = modelsFragment.getSelectedItemId();
+
+                if (modelId == -1) {
+                    Toast.makeText(this, "Create a model first!", Toast.LENGTH_SHORT).show();
+                } else {
+                    db.addEngine(modelId, name);
+                }
                 break;
         }
         setListMode(mode);
