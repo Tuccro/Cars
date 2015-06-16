@@ -191,7 +191,7 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
         db.open();
         switch (mode) {
             case BRANDS_MODE:
-                db.updateBrand(id, name);
+                db.updateBrand(currentItemsList.get(id).getId(), name);
                 brandsFragment.init();
                 break;
             case MODELS_MODE:
@@ -200,11 +200,11 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                 if ((start < 1900 && start > Utils.getCurrentYear()) ||
                         (end < 1900 && end > Utils.getCurrentYear())) break;
 
-                db.updateModel(id, brandsFragment.getSelectedItemId(), name, start, end);
+                db.updateModel(currentItemsList.get(id).getId(), brandsFragment.getSelectedItemId(), name, start, end);
                 modelsFragment.init();
                 break;
             case ENGINES_MODE:
-                db.updateEngine(id, modelsFragment.getSelectedItemId(), name);
+                db.updateEngine(currentItemsList.get(id).getId(), modelsFragment.getSelectedItemId(), name);
                 break;
         }
         setListMode(mode);
@@ -237,6 +237,7 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
     @Override
     public void onBrandSpinnerSelect(int brandId) {
         modelsFragment.init(brandId);
+        setListMode(mode);
     }
 
     /**
