@@ -176,7 +176,7 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
                     Toast.makeText(this, "Create a brand first!", Toast.LENGTH_SHORT).show();
                 } else {
                     db.addModel(brandsFragment.getSelectedItemId(), name, start, end);
-                    modelsFragment.init();
+                    modelsFragment.init(brandId);
                 }
                 break;
             case ENGINES_MODE:
