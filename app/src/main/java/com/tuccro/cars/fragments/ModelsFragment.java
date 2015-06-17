@@ -26,6 +26,7 @@ import java.util.List;
  */
 public class ModelsFragment extends Fragment {
 
+    public static ModelsFragment fragment;
     Spinner spinner;
     Button button;
     EditText tvStart;
@@ -37,6 +38,13 @@ public class ModelsFragment extends Fragment {
     boolean editMode = false;
 
     private OnButtonClickListener onButtonClickListener;
+
+    public static ModelsFragment getInstance() {
+        if (fragment == null) {
+            fragment = new ModelsFragment();
+        }
+        return fragment;
+    }
 
     public ModelsFragment() {
         // Required empty public constructor
@@ -103,6 +111,12 @@ public class ModelsFragment extends Fragment {
 
         spinner.setOnItemSelectedListener(listener);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override

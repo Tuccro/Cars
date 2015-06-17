@@ -18,11 +18,19 @@ import com.tuccro.cars.R;
  */
 public class ItemsListFragment extends ListFragment {
 
+    public static ItemsListFragment fragment;
     private OnFragmentInteractionListener mListener;
 
     private String selectedPositionName = "";
     private int selectedPosition = -1;
     private boolean actionDone = true;
+
+    public static ItemsListFragment getInstance() {
+        if(fragment==null){
+            fragment = new ItemsListFragment();
+        }
+        return fragment;
+    }
 
     public boolean isActionDone() {
         return actionDone;

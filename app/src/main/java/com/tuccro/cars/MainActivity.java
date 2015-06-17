@@ -43,21 +43,24 @@ public class MainActivity extends Activity implements EditFragment.OnEditListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        brandsFragment = new BrandsFragment();
-        modelsFragment = new ModelsFragment();
-        listFragment = new ItemsListFragment();
+        brandsFragment = BrandsFragment.getInstance();
+        modelsFragment = ModelsFragment.getInstance();
+        listFragment = ItemsListFragment.getInstance();
         editFragment = new EditFragment();
 
-        fragTrans = getFragmentManager().beginTransaction();
-        fragTrans.add(R.id.layout_brands, brandsFragment);
-        fragTrans.add(R.id.layout_models, modelsFragment);
-        fragTrans.add(R.id.layout_list, listFragment);
-        fragTrans.add(R.id.layout_edit, editFragment);
-        fragTrans.commit();
+        if (savedInstanceState == null) {
+            fragTrans = getFragmentManager().beginTransaction();
+            fragTrans.add(R.id.layout_brands, brandsFragment);
+            fragTrans.add(R.id.layout_models, modelsFragment);
+            fragTrans.add(R.id.layout_list, listFragment);
+            fragTrans.add(R.id.layout_edit, editFragment);
+            fragTrans.commit();
 
-        setListMode(ENGINES_MODE);
+            setListMode(ENGINES_MODE);
+        }
     }
 
     @Override

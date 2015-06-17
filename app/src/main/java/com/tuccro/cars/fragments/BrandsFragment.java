@@ -24,12 +24,20 @@ import java.util.List;
  */
 public class BrandsFragment extends Fragment {
 
+    public static BrandsFragment fragment;
     Spinner spinner;
     Button button;
     List<Item> brandsList;
     int selectedItemId;
 
     private OnButtonClickListener onButtonClickListener;
+
+    public static BrandsFragment getInstance() {
+        if(fragment==null){
+            fragment = new BrandsFragment();
+        }
+        return fragment;
+    }
 
     public BrandsFragment() {
         // Required empty public constructor
@@ -60,6 +68,12 @@ public class BrandsFragment extends Fragment {
 
         init();
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override

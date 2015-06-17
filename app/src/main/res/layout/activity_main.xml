@@ -8,8 +8,7 @@
     <LinearLayout
         android:id="@+id/layout_brands"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
         android:background="@color/SkyBlue"
         android:orientation="vertical">
 
@@ -18,8 +17,7 @@
     <LinearLayout
         android:id="@+id/layout_models"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_height="wrap_content"
         android:background="@color/SkyBlue"
         android:orientation="vertical">
 
@@ -27,8 +25,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15"
+        android:layout_height="fill_parent"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -49,7 +46,5 @@
             android:orientation="vertical">
 
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>
